@@ -1,0 +1,37 @@
+﻿.ccaserchableheader {
+  cursor: pointer;
+}
+.ccagridsortsymbol{
+  float:right
+}
+.noMargin{
+  margin:0px;
+}
+
+.pageNavigate {
+  padding: 2px;
+}
+.floatLeft{
+  float:left;
+}
+.floatRight{
+  float:right;
+}
+.disabled input {
+  pointer-events: none;
+}
+.pageNavigate .disabled {
+  pointer-events: none;
+}
+.pageRecordInfo {padding-top:6px;}
+.padLR{padding-left:15px;padding-right:15px;}
+.viewPages{padding-right:15px;}
+.actions{border-left:2px solid #fff;}
+@media screen and (max-width:767px){
+  .pageNavigate {
+    clear:both;
+    padding-top:15px;
+  }
+  .pageRecordInfo.text-right{text-align:left;}
+                                     }
+

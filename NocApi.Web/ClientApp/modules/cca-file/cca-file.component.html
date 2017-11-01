@@ -1,0 +1,48 @@
+﻿<div class="ccagridtableWrapper">
+ 
+    <div class="table-responsive">
+
+      <div ccaFileDrop [ccafileData]="data" (fileOver)="fileOvered($event)" (onFileDrop)="fileOver = false;"
+           [ngClass]="[data?.dropperClassName, fileOver == true ? data?.fileOverClassName : '']">
+
+        <!--<input style="display:none" #fileInput ccaFileInput [ccafileData]="data" *ngIf="data?.type=='single'" type="file" />-->
+        <!--<input style="display:none" #fileInput ccaFileInput [ccafilesData]="data" *ngIf="data?.type=='multiple'" multiple type="file" />-->
+        <input style="display:none" #fileInput ccaFileInput [ccafilesData]="data" class="btn btn-primary" multiple type="file" [attr.accept]="data?.accept" />
+
+        <input *ngIf="data?.chooseButton" class="btn btn-primary marB15 chooseFile" type="button" value="Choose Files" [ngClass]="[data?.inputClassName, 'chooseFilesButton']" (click)="triggerInputClick()" />
+        <span class="dropFile">drop files here..</span>
+        <input type="button" class="btn btn-primary" value="Upload All" *ngIf="data?.uploadAll?.button" [disabled]="(data?.files | newFile).length == 0" [ngClass]="[data?.inputClassName,'uploadButton']" (click)="data.executeUploadAll()" />
+        <div class="ccatableWrap ">
+          <table *ngIf="data?.files?.length > 0" class="table table-striped tblGrid ccatable ccaFile">
+            <thead>
+              <tr class="ccagridheaderrow">
+                <th>Name</th>
+                <th>Size (Kb)</th>
+                <!--<th>Type</th>-->
+                <th>Status</th>
+                <th *ngIf="data?.upload?.button || data?.download?.button || data?.delete?.button">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data?.files">
+                <td><div [innerHtml]=item.name></div></td>
+                <td><div [innerHtml]=item.size></div></td>
+                <!--<td><div [innerHtml]=item.type></div></td>-->
+                <td><div [innerHtml]=fileStatus[item.status]></div></td>
+                <td *ngIf="data?.upload?.button || data?.download?.button || data?.delete?.button">
+                  <table>
+                    <tr>
+                      <td *ngIf="data?.upload?.button && item.status == 0"><input type="button" value="Upload" class="btn btn-primary" (click)="data?.executeUpload(item)" /></td>
+                      <td *ngIf="data?.download?.button && item.status == 2"><input type="button" value="Download" class="btn btn-primary" (click)="data?.executeDownload(item)" /></td>
+                      <td *ngIf="data?.delete?.button && item.status >= 0"><input type="button" value="Delete" class="btn btn-primary" (click)="data?.executeDelete(item)" /></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+    </div>
+  </div>
+</div>

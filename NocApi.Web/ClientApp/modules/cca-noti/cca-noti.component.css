@@ -1,0 +1,35 @@
+﻿.notificationWrapper {
+  bottom: 0px;
+  position: fixed;
+  z-index: 99999;
+  width: 100%;
+}
+
+  .notificationWrapper .notificationsul {
+    list-style: none;
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .notificationWrapper .notificationli {
+    background: #006BDD;
+    color: white;
+    border-radius: 6px;
+    padding: 6px 10px;
+    max-width: 300px;
+    min-width: 200px;
+    margin:4px auto;
+  }
+
+  .notificationWrapper .success {
+    background: #00D940;
+  }
+
+  .notificationWrapper .error {
+    background: #FF0008;
+  }
+
+  .notificationWrapper .warning {
+    background: #FE9800;
+  }

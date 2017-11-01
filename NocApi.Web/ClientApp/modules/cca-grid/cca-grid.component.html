@@ -1,0 +1,93 @@
+﻿<div class="ccagridtableWrapper  ">
+  <div class="ccatableWrap table-responsive">
+    <div class="ccatable" [ngClass]="data?.className">
+
+      <table class="table table-striped tblGrid noMargin ccatable">
+        <thead>
+          <tr class="row ccagridheaderrow">
+            <th class="column ccagridheader ccaselectheader" *ngIf="data?.selectable">
+              <span class="ccagridheaderlabel ccagridheaderselectlabel" *ngIf="data?.selectable == 'single'"></span>
+              <span class="ccagridheaderlabel ccagridheaderselectlabel" *ngIf="data?.selectable == 'multi'">
+                <label class="customCheckbox"><input type="checkbox" [(ngModel)]="allSelected" (change)="selectAllChanged()" /><span></span></label>
+                
+              </span>
+            </th>
+            <th [attr.width]="m.width" *ngFor="let m of data?.model | notHidden" class="column ccagridheader" (click)="changeSort(m.field, m.sort)" [ngClass]="{ccasortableheader : m.sort, ccasearchableheader:m.search}">
+              <span [innerHtml]="m.display" class="ccagridheaderlabel"></span>
+              <span class="ccagridsortsymbol ccagridsortsymboldesc" *ngIf="data?.sort.field == m.field && data?.sort.isascending == false">&uarr;</span>
+              <span class="ccagridsortsymbol ccagridsortsymbolasc" *ngIf="data?.sort.field == m.field && data?.sort.isascending == true">&darr;</span>
+            </th>
+            <th *ngIf="data?.actions" class="column ccagridheaderlabel ccagridheaderactionlabel">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody *ngIf="data?.loadingGrid && !data?.gridLoadFailed">
+          <tr class="row ccaloadingrow">
+            <td class="column ccaloadingcolumn" [attr.colspan]="data?.model.length" align="center"><span class="ccaloadingcolumnspan">Loading...</span></td>
+          </tr>
+        </tbody>
+
+        <tbody *ngIf="!data?.loadingGrid && data?.gridLoadFailed">
+          <tr class="row ccafailedmsgrow">
+            <td class="column ccafailedmsgcolumn" [attr.colspan]="data?.model.length" align="center"><span class="ccafailedmsgcolumnspan">Failed to load grid data.</span></td>
+          </tr>
+        </tbody>
+
+        <tbody *ngIf="!data?.loadingGrid && !data?.gridLoadFailed && data?.rows.length == 0">
+          <tr class="row ccaloadingrow">
+            <td class="column ccaloadingcolumn" [attr.colspan]="data?.model.length" align="center"><span class="ccaloadingcolumnspan">No records found...</span></td>
+          </tr>
+        </tbody>
+
+        <tbody *ngIf="!data?.loadingGrid && !data?.gridLoadFailed && data?.rows.length > 0">
+          <tr class="row ccasearchrow" [hidden]="!data?.searchable">
+            <td class="column ccaselectblankcolumn" *ngIf="data?.selectable">
+              &nbsp;
+            </td>
+            <td class="column ccasearchcolumn" *ngFor="let m of data?.model | notHidden ">
+              <input (keyup.enter)="enterKeySearch()" *ngIf="m.search" [(ngModel)]="data?.searchData[m.field]" type="text" />
+            </td>
+          
+          <tr class="row ccacontentrow" *ngFor="let r of data?.rows; let i = index; ">
+            <td class="column ccaselectblankcolumn" *ngIf="data?.selectable">
+              <label class="customCheckbox"><input type="checkbox" [(ngModel)]="r.selected" (change)="selectChanged(r)" /><span></span></label>
+</td>
+
+            <td class="column ccacontentcolumn" *ngFor="let m of data?.model | notHidden">
+              <span class="ccacontentcolumnspan" [innerHTML]="getColumnValue(m,r)"></span>
+            </td>
+            <td *ngIf="data?.actions" class="actions">
+              <table class="ccaactionstable">
+                <tr class="ccaactionsrow">
+                  <td class="ccaactionscolumn" *ngFor="let a of (data?.actions | keys);">
+                    <span [ngClass]="{'disabled':(a.value.disabledRows?.indexOf(i) >= 0)}"><span [ngClass]="[a.value.className, a.value.className+i]" (click)="a.value.action(i)"></span></span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</div>
+<div class="row marB25 pageSize" [hidden]="!data?.pagination">
+ 
+    <div class="pull-left padLR col-md-4 ">
+      Page Size : <select (change)="pageSizeChanged()" class="form-control pageSizeInput " [(ngModel)]="data?.pageData.selectedPageSize">
+        <option *ngFor="let pageSize of data?.pageSizes" [ngValue]="pageSize">{{pageSize}}</option>
+      </select>
+    </div>
+    <div class="pageNumber col-md-4 pageNavigate"><span [ngClass]="{'disabled':data?.pageData.currentPage==1}" title="First" (click)="goToFirstPage()"><i class="icon-angle-double-left"></i> </span>
+<span [ngClass]="{'disabled':data?.pageData.currentPage==1}" title="Prev" (click)="goToPreviousPage()"><i class="icon-angle-left"></i></span>Page <input (change)="pageNumberChanged()" class="form-control" type="number" min="1" [attr.max]="data?.pageData.totalPages" [(ngModel)]="data?.pageData.currentPage" /> of <span [innerHtml]="data?.pageData.totalPages"> pages(s) </span><span [ngClass]="{'disabled':data?.pageData.currentPage==data?.pageData.totalPages}" title="Next" (click)="goToNextPage()"><i class="icon-angle-right"></i></span>
+<span [ngClass]="{'disabled':data?.pageData.currentPage==data?.pageData.totalPages}" title="Last" (click)="goToLastPage()"><i class="icon-angle-double-right"></i></span></div>
+ 
+  <div class="viewPages col-md-4">
+    <div class="pageRecordInfo text-right">Viewing {{data?.pageData.currentFromRecord}} to {{data?.pageData.currentToRecord}} of {{data?.pageData.totalRecords}} record(s)</div>
+
+    
+
+  </div>
+</div>

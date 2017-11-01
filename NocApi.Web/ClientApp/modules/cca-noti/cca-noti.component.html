@@ -1,0 +1,12 @@
+﻿<div class="notificationWrapper">
+  <ul class="notificationsul">
+    <li *ngFor="let n of notifications"
+        class="notificationli" 
+        [ngClass]="n.type" 
+        (click)="notificationClicked(n)" 
+        (mouseover)="n.mouseover=true" (mouseout)="n.mouseover=false" [@flyInOut]>
+      <div *ngIf="n.subject" class="subject" [innerHtml]="n.subject"></div>
+      <div class="content" [innerHtml]="n.body"></div>
+    </li>
+  </ul>
+</div>

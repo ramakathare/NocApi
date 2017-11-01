@@ -1,0 +1,10 @@
+﻿.fileDropper {
+  /* min-height:100px;*/
+}
+
+.fileOver{
+  border:3px dotted black;
+}
+.floatRight{
+  float:right;
+}
