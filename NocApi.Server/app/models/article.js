@@ -21,7 +21,7 @@ const setTags = tags => tags.split(',');
  */
 
 const ArticleSchema = new Schema({
-  title: { type : String, default : '', trim : true },
+    title: { type : String, default: '', trim: true },
   body: { type : String, default : '', trim : true },
   user: { type : Schema.ObjectId, ref : 'User' },
   comments: [{
@@ -36,6 +36,7 @@ const ArticleSchema = new Schema({
   },
   createdAt  : { type : Date, default : Date.now }
 });
+
 
 /**
  * Validations

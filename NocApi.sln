@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NocApi.Web", "NocApi.Web\NocApi.Web.csproj", "{50A4F9FA-96E9-489E-ABC1-73979A238907}"
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NocApi.Server", "NocApi.Server\NocApi.Server.njsproj", "{D8278531-2585-4D96-87BA-A8BD1D88414F}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NocApi", "NocApi\NocApi.njsproj", "{24C6AD9E-6042-4A5C-A9CF-E9B9F1E5DF7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{50A4F9FA-96E9-489E-ABC1-73979A238907}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50A4F9FA-96E9-489E-ABC1-73979A238907}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50A4F9FA-96E9-489E-ABC1-73979A238907}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8278531-2585-4D96-87BA-A8BD1D88414F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8278531-2585-4D96-87BA-A8BD1D88414F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8278531-2585-4D96-87BA-A8BD1D88414F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8278531-2585-4D96-87BA-A8BD1D88414F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24C6AD9E-6042-4A5C-A9CF-E9B9F1E5DF7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C6AD9E-6042-4A5C-A9CF-E9B9F1E5DF7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C6AD9E-6042-4A5C-A9CF-E9B9F1E5DF7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C6AD9E-6042-4A5C-A9CF-E9B9F1E5DF7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

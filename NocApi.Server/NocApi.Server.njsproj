@@ -36,6 +36,9 @@
     <Compile Include="app\controllers\users.js" />
     <Compile Include="app\mailer\index.js" />
     <Compile Include="app\models\article.js" />
+    <Compile Include="app\models\model.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\models\user.js" />
     <Compile Include="app\utils\index.js" />
     <Compile Include="config\env\development.js" />
