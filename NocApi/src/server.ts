@@ -68,12 +68,14 @@ export class Server {
     await import("../config/acl");
     await import("../config/passport");
 
-    const { router } = await import("./routes");
+    const { adminRouter } = await import("./routes/admin");
+    const { apiRouter } = await import("./routes/api");
 
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.use("/api", router);
+    app.use("/admin", adminRouter);
+    app.use("/api", apiRouter);
 
     return app;
   }

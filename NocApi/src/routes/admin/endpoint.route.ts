@@ -1,34 +1,34 @@
 ﻿import { Router } from "express";
-import { modelController } from "../controllers";
-import { modelValidation } from "../validations";
+import { endpointController } from "../../controllers";
+import { endpointValidation } from "../../validations";
 
 const router = Router();
 
 router
     .route("/")
     /**
-     * @api {get} /models Index All Models
+     * @api {get} /endpoints Index All Models
      * @apiName Index
      * @apiGroup Model
      *
      * @apiSuccess {String} firstname Firstname of the Model.
      * @apiSuccess {String} lastname  Lastname of the Model.
      */
-    .get(modelValidation.index, modelController.index)
+    .get(endpointValidation.index, endpointController.index)
     /**
-     * @api {post} /models Create New Model
+     * @api {post} /endpoints Create New Model
      * @apiName Create
      * @apiGroup Model
      *
      * @apiSuccess {String} firstname Firstname of the Model.
      * @apiSuccess {String} lastname  Lastname of the Model.
      */
-    .post(modelValidation.create, modelController.create);
+    .post(endpointValidation.create, endpointController.create);
 
 router
     .route("/:id")
     /**
-     * @api {get} /models/:id Show Model Info
+     * @api {get} /endpoints/:id Show Model Info
      * @apiName Show
      * @apiGroup Model
      *
@@ -37,10 +37,10 @@ router
      * @apiSuccess {String} firstname Firstname of the Model.
      * @apiSuccess {String} lastname  Lastname of the Model.
      */
-    //.get(modelValidation.show, modelController.show)
+    //.get(endpointValidation.show, endpointController.show)
 
     /**
-     * @api {put} /models/:id Update Model Info
+     * @api {put} /endpoints/:id Update Model Info
      * @apiName Update
      * @apiGroup Model
      *
@@ -49,18 +49,18 @@ router
      * @apiSuccess {String} firstname Firstname of the Model.
      * @apiSuccess {String} lastname  Lastname of the Model.
      */
-    .put(modelValidation.update, modelController.update)
+    .put(endpointValidation.update, endpointController.update)
 
-    /**
-     * @api {delete} /models/:id Delete Model
-     * @apiName Delete
-     * @apiGroup Model
-     *
-     * @apiParam {Number} id Model's Unique Object ID.
-     *
-     * @apiSuccess {String} firstname Firstname of the Model.
-     * @apiSuccess {String} lastname  Lastname of the Model.
-     */
-    //.delete(modelValidation.destroy, modelController.destroy);
+/**
+ * @api {delete} /endpoints/:id Delete Model
+ * @apiName Delete
+ * @apiGroup Model
+ *
+ * @apiParam {Number} id Model's Unique Object ID.
+ *
+ * @apiSuccess {String} firstname Firstname of the Model.
+ * @apiSuccess {String} lastname  Lastname of the Model.
+ */
+//.delete(endpointValidation.destroy, endpointController.destroy);
 
 export default router;
